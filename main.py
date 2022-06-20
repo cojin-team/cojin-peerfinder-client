@@ -6,8 +6,21 @@ from core.rpc import RPC
 
 from sys import exit #sometimes exit is not defined
 
+
 cfg = parser()
-#cfg.read('filepath')
+
+# Detect cojin config file
+if system() == 'Windows':
+    cojinpath = path.join(getenv('USERPROFILE'), '.cojin/cojin.conf')
+else:
+    cojinpath = path.join(getenv('HOME'), '.cojin/cojin.conf')
+
+# Error msg if cojin file doesn't exists
+if not path.isfile(cojinpath):
+    alert('The cojin configuration file does not exists, please create and fill it', 'Cojin Configuration Error')
+    exit()
+
+cfg.read(cojinpath)
 
 if not cfg.rpcOK():
     alert('The wallet RPC is not configured, please configure it and restart the wallet', 'Wallet RPC Error')
