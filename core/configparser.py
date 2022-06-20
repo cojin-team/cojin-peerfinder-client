@@ -2,10 +2,10 @@ from core.utils import Empty
 
 class parser(object):
     def __init__(self) -> None:
-        self.reset()
+        self.reset() # avoid writing 2 times the same code
         
     def reset(self) -> None:
-        #config saver
+        #(re)define the properties
         self.rpc = Empty()
         self.rpc.enabled = False
         self.rpc.user = None
@@ -13,7 +13,6 @@ class parser(object):
         self.rpc.port = None
         self.walletport = 18327
 
-    
     def read(self, file: str):
         with open(file, 'r') as f:
             self.lines = f.readlines()

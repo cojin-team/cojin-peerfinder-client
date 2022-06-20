@@ -1,9 +1,15 @@
+# Local files
 from core.configparser import parser
-from pyngrok import ngrok
-from pymsgbox import alert
 from core.api import wrapper #still in pseudocode
 from core.rpc import RPC
 
+# External libraries
+from pyngrok import ngrok
+from pymsgbox import alert
+
+# Internal python libraries
+from os import getenv, path
+from platform import system
 from sys import exit #sometimes exit is not defined
 
 
@@ -22,6 +28,8 @@ if not path.isfile(cojinpath):
 
 cfg.read(cojinpath)
 
+# Test wallet rpc
+
 if not cfg.rpcOK():
     alert('The wallet RPC is not configured, please configure it and restart the wallet', 'Wallet RPC Error')
     exit()
@@ -36,8 +44,10 @@ except Exception as e:
     alert('The wallet RPC refuses the connection, try restarting the wallet', 'Wallet RPC Error')
     exit()
 
+# Actual peer finding code
+
 server = wrapper('serverURL')
-if True: #replace with programconfig.enablePortFoward
+if True: #replace with programconfig.enablePortFoward (if program config is added)
     tunnel = ngrok.connect(cfg.walletport, 'tcp')
     server.post(tunnel.data['public_url'])
 

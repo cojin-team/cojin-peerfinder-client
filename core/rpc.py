@@ -6,7 +6,7 @@ class RPC(object):
         self.url = url
         self.user = user
         self.passwd = passwd
-        self.request('ping')
+        self.request('ping') # won't create the RPC instance if the server refuses the connection
 
     # Stolen from https://stackoverflow.com/questions/53073163/how-to-connect-with-bitcoin-rpc-through-python
     def request(self, method: str, params: list = []):
