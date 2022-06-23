@@ -8,7 +8,7 @@ class wrapper(object):
         Args:
             url (str): The server root url (like https://localhost:8080/)"""
         parsed = urlparse(url)
-        self.url = 'https://' + parsed.netloc
+        self.url = parsed.scheme + '://' + parsed.netloc
         requests.get(self.url + '/ping')
 
     def getPeers(self) -> list:
