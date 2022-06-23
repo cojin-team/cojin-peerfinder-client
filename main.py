@@ -11,6 +11,7 @@ from pymsgbox import alert
 from os import getenv, path
 from platform import system
 from sys import exit #sometimes exit is not defined
+from time import sleep
 
 
 cfg = parser()
@@ -53,7 +54,8 @@ if True: #replace with programconfig.enablePortFoward (if program config is adde
 
 peers = wrapper.getPeers()
 for peer in peers:
-    rpc.request('addnode', [peer, 'onetry'])
+    rpc.request('addnode', [peer, 'onetry']) # use onetry bc instantly attempts the connection
+    sleep(0.5) # avoid accidental DOS attack
 
 totalpeers = rpc.request('getpeerinfo')
 print('Discovered', len(peers), 'peers, connected succesfully with', len(totalpeers), 'peers')
