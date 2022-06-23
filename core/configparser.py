@@ -5,7 +5,7 @@ class parser(object):
         self.reset() # avoid writing 2 times the same code
         
     def reset(self) -> None:
-        #(re)define the properties
+        """Set the instance properties to default"""
         self.rpc = Empty()
         self.rpc.enabled = False
         self.rpc.user = None
@@ -14,6 +14,12 @@ class parser(object):
         self.walletport = 18327
 
     def read(self, file: str):
+        """
+        Parse the config file
+        
+        Args:
+            file (str): File path
+        """
         with open(file, 'r') as f:
             self.lines = f.readlines()
         
@@ -36,6 +42,7 @@ class parser(object):
                 self.rpc.port = int(pair[1])
             
     def rpcOK(self) -> bool:
+        """Check if the RPC is enabled and ready"""
         if not self.rpc.enabled: return False
         if not self.rpc.user: return False
         if not self.rpc.password: return False

@@ -1,6 +1,6 @@
 # Local files
 from core.configparser import parser
-from core.api import wrapper #still in pseudocode
+from core.api import wrapper
 from core.rpc import RPC
 
 # External libraries
@@ -50,7 +50,7 @@ except Exception as e:
 server = wrapper('serverURL')
 if True: #replace with programconfig.enablePortFoward (if program config is added)
     tunnel = ngrok.connect(cfg.walletport, 'tcp')
-    server.post(tunnel.data['public_url'])
+    server.postPeer(tunnel.data['public_url'])
 
 peers = wrapper.getPeers()
 for peer in peers:
