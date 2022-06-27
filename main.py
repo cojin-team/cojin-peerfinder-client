@@ -47,15 +47,21 @@ except Exception as e:
 
 # Actual peer finding code
 
-server = wrapper('serverURL')
-if True: #replace with programconfig.enablePortFoward (if program config is added)
-    tunnel = ngrok.connect(cfg.walletport, 'tcp')
-    server.postPeer(tunnel.data['public_url'])
+server = wrapper('http://localhost:8989')
 
 peers = wrapper.getPeers()
 for peer in peers:
     rpc.request('addnode', [peer, 'onetry']) # use onetry bc instantly attempts the connection
     sleep(0.5) # avoid accidental DOS attack
+if True: #replace with programconfig.enablePortFoward (if program config is added)
+    print('Posting peer on peerfinding server')
+    tunnel = ngrok.connect(cfg.walletport, 'tcp')
+    server.postPeer(tunnel.data['public_url'])
 
-totalpeers = rpc.request('getpeerinfo')
-print('Discovered', len(peers), 'peers, connected succesfully with', len(totalpeers), 'peers')
+    try:
+        process = ngrok.get_ngrok_process()
+        print('Peer posted, press ctrol + C to kill ngrok')
+        process.proc.wait()
+    except KeyboardInterrupt:
+        print('Shutting down')
+        ngrok.kill()
