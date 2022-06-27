@@ -53,7 +53,9 @@ peers = server.getPeers()
 for peer in peers:
     if peer == None: continue
     rpc.request('addnode', [peer, 'onetry']) # use onetry bc instantly attempts the connection
-    sleep(0.5) # avoid accidental DOS attack
+    sleep(1) # avoid accidental DOS attack
+
+
 if True: #replace with programconfig.enablePortFoward (if program config is added)
     print('Posting peer on peerfinding server')
     tunnel = ngrok.connect(cfg.walletport, 'tcp')
