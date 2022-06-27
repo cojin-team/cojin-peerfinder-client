@@ -22,5 +22,5 @@ class wrapper(object):
             peerURL (str): Your peer url (like a ngrok tunnel)"""
         requests.post(
             self.url + '/postpeer',
-            json={'url': urlparse(peerURL).netloc}
+            json={'peer': urlparse(peerURL).netloc}
         )

@@ -25,7 +25,7 @@ class parser(object):
         
         for line in self.lines:
             if line.startswith('#'): continue #skip comments
-            pair = line.split('=')
+            pair = line.removesuffix('\n').split('=') #remove \n at the end of line before splitting
             #pair[0] is the instruction
             #pair[1] is the value
             if pair[0] == 'server':
@@ -39,7 +39,7 @@ class parser(object):
                 self.rpc.password = pair[1]
 
             if pair[0] == 'rpcport':
-                self.rpc.port = int(pair[1])
+                self.rpc.port = pair[1]
             
     def rpcOK(self) -> bool:
         """Check if the RPC is enabled and ready"""
