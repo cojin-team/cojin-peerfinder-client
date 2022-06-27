@@ -47,7 +47,7 @@ except Exception as e:
 
 # Actual peer finding code
 
-server = wrapper('http://localhost:8989')
+server = wrapper('https://cojin-peerfinder.glitch.me')
 
 peers = server.getPeers()
 for peer in peers:
