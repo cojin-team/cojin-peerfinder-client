@@ -1,7 +1,7 @@
 # Local files
-from core.configparser import parser
-from core.api import wrapper
-from core.rpc import RPC
+from core.cojin.configparser import parser
+from core.cojin.rpc import RPC
+from core.peerfinder import wrapper
 from core.uncolor import uncolor
 
 # External libraries
