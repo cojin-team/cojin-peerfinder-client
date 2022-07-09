@@ -5,6 +5,9 @@ By [Omicron166](https://github.com/omicron166)
 ## Installation guide
 
 ### Installation with python
+OS Support:
+- If the OS can run python 3.10, this tool will work
+
 Requirements:
 - git
 - python 3.10 or later
@@ -21,7 +24,7 @@ python main.py
 <br>
 
 ### Standalone installation
-Tested OS:
+Supported OS:
 - Windows 10 64 bits
 
 Go to [releases](https://github.com/cojin-team/cojin-peerfinder-client/releases/) and download the last standalone zip build
@@ -52,6 +55,10 @@ Go to [releases](https://github.com/cojin-team/cojin-peerfinder-client/releases/
 2 - Enjoy
 
 <br>
+
+## API version
+
+v1.0.0
 
 ## Get support
 
